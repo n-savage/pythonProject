@@ -1,16 +1,18 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# Basic scraper
+# import libraries
+import urllib3
+from bs4 import BeautifulSoup
 
 
-# Press the green button in the gutter to run the script.
+def main(name):
+    print(f'Checking page; {name}')
+    http = urllib3.PoolManager()
+    r = http.request('GET', name)
+    soup = BeautifulSoup(r.data, "html.parser")
+    print(soup.text)
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    main("https://www.google.co.uk")
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
